@@ -4,17 +4,17 @@ const principles = [
   {
     number: "01",
     title: "Kreativitas",
-    description: "Ide diperlakukan sebagai bahan bakar untuk membaca masalah dan membayangkan alternatif yang lebih manusiawi.",
+    description: "Ide yang diasah menjadi solusi visual yang relevan dan mudah dipahami.",
   },
   {
     number: "02",
     title: "Teknologi",
-    description: "Digital bukan sekadar alat, tetapi cara mempercepat pembelajaran, kolaborasi, dan eksekusi solusi.",
+    description: "Pendekatan teknis yang terukur: responsif, cepat, dan dapat diakses.",
   },
   {
     number: "03",
-    title: "Dampak Sosial",
-    description: "Setiap karya diarahkan untuk menjawab kebutuhan nyata, bukan hanya mengejar tampilan yang terlihat canggih.",
+    title: "Dampak Nyata",
+    description: "Karya yang tidak berhenti di estetika — tapi menjawab kebutuhan penggunanya.",
   },
 ];
 
@@ -29,10 +29,10 @@ export function AboutSection() {
             Mengapa Berkarya?
           </h2>
           <p className="mt-8 max-w-[520px] text-lg leading-8 text-muted">
-            Berkarya bukan sekadar menghasilkan portofolio. Di Mahreen Indonesia, karya menjadi cara generasi muda melatih kepekaan, menerjemahkan masalah sosial, dan membangun solusi digital yang bisa dipahami banyak orang.
+            Berkarya bukan sekadar membuat tampilan yang menarik. Di Mahreen Indonesia, karya menjadi cara untuk menerjemahkan ide, teknologi, dan empati menjadi pengalaman digital yang benar-benar berguna.
           </p>
           <p className="mt-5 max-w-[520px] text-lg leading-8 text-muted">
-            Program ini menempatkan kreativitas sebagai bahasa, teknologi sebagai medium, dan dampak sosial sebagai arah.
+            Pendekatan ini menuntut kejelasan visual, eksekusi teknis yang rapi, dan keberanian untuk terus memperbaiki hasil dari feedback nyata.
           </p>
           <div className="mt-12 h-px w-full bg-white/[0.08]" />
         </Reveal>
@@ -40,13 +40,18 @@ export function AboutSection() {
         <div className="space-y-0">
           {principles.map((item, index) => (
             <Reveal key={item.number} delay={index * 100}>
-              <article className="border-b border-white/[0.06] py-8 first:pt-0">
-                <p className="font-mono text-xs tracking-[0.2em] text-gold">{item.number}</p>
+              <article className="program-row group border-b border-white/[0.06] py-8 first:pt-0">
+                <p className="program-row-number font-mono text-xs tracking-[0.2em] text-gold/60">{item.number}</p>
                 <h3 className="mt-4 text-2xl font-medium tracking-[-0.03em] text-primary-text sm:text-[1.4rem]">{item.title}</h3>
                 <p className="mt-4 leading-7 text-muted">{item.description}</p>
               </article>
             </Reveal>
           ))}
+          <Reveal delay={360}>
+            <p className="pt-8 text-sm italic leading-7 text-gold/65">
+              Internship ini adalah kesempatan untuk membuktikan ketiga hal itu.
+            </p>
+          </Reveal>
         </div>
       </div>
     </section>

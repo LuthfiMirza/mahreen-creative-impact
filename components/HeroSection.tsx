@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 const tickerText = "Web Developer  ◆  UI/UX Enthusiast  ◆  Mahreen Indonesia Batch 1  ◆  Berkarya Untuk Indonesia  ◆  Creative Digital Solutions  ◆";
@@ -12,9 +12,11 @@ export function HeroSection() {
   const indonesiaY = useTransform(scrollY, (value) => value * 0.15);
   const glowY = useTransform(scrollY, (value) => value * 0.08);
   const svgRef = useRef<SVGSVGElement>(null);
+  const [prefersReduced, setPrefersReduced] = useState(false);
 
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    setPrefersReduced(reduceMotion);
     const textEl = svgRef.current?.querySelector("text");
     if (!textEl || reduceMotion) return;
 
@@ -32,25 +34,36 @@ export function HeroSection() {
 
   return (
     <section id="home" className="relative min-h-screen overflow-hidden bg-primary px-6 pb-20 pt-32 sm:pt-40">
-      <motion.div style={{ y: glowY }} className="absolute right-[-18vw] top-[8vh] z-0 h-[60vw] w-[60vw] rounded-full bg-[radial-gradient(circle,rgba(201,170,113,0.07)_0%,transparent_62%)] blur-[80px]" />
-      <motion.div style={{ y: glowY }} className="absolute bottom-[-10vw] left-[-8vw] z-0 h-[30vw] w-[30vw] rounded-full bg-[radial-gradient(circle,rgba(204,41,54,0.06)_0%,transparent_64%)] blur-[60px]" />
-      <motion.p style={{ y: indonesiaY }} className="pointer-events-none absolute bottom-[-0.16em] left-[-0.06em] z-0 select-none font-display text-[22vw] font-extrabold leading-none tracking-atmosphere text-white/[0.025]">
+      <motion.div style={{ y: prefersReduced ? 0 : glowY }} className="absolute right-[-18vw] top-[8vh] z-0 h-[60vw] w-[60vw] rounded-full bg-[radial-gradient(circle,rgba(201,170,113,0.07)_0%,transparent_62%)] blur-[80px]" />
+      <motion.div style={{ y: prefersReduced ? 0 : glowY }} className="absolute bottom-[-10vw] left-[-8vw] z-0 h-[30vw] w-[30vw] rounded-full bg-[radial-gradient(circle,rgba(204,41,54,0.06)_0%,transparent_64%)] blur-[60px]" />
+      <motion.p style={{ y: prefersReduced ? 0 : indonesiaY }} className="pointer-events-none absolute bottom-[-0.16em] left-[-0.06em] z-0 select-none font-display text-[22vw] font-extrabold leading-none tracking-atmosphere text-white/[0.025]">
         INDONESIA
       </motion.p>
 
+      <div className="absolute bottom-10 left-0 z-10 hidden pl-6 lg:block">
+        <div className="flex items-center gap-3 font-mono text-[0.75rem] uppercase tracking-[0.08em] text-primary-text/45">
+          <span className="h-px w-6 bg-gold" />
+          <span>Luthfi Mirza Darsono</span>
+        </div>
+        <p className="mt-2 pl-9 font-mono text-[0.75rem] uppercase tracking-[0.08em] text-primary-text/45">Web Developer · Universitas Gunadarma</p>
+      </div>
+      <div className="absolute right-0 top-24 z-10 hidden pr-6 font-mono text-[0.65rem] uppercase tracking-[0.18em] text-gold/50 [writing-mode:vertical-rl] lg:block">
+        2025 · Web Dev
+      </div>
+
       <div className="relative z-10 mx-auto flex min-h-[calc(100vh-10rem)] max-w-7xl items-center">
         <div className="w-full max-w-6xl">
-          <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease }}>
+          <motion.div initial={prefersReduced ? false : { opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease }}>
             <p className="font-mono text-xs uppercase tracking-[0.28em] text-gold">
               Mahreen Indonesia · Internship Batch 1
             </p>
             <div className="my-4 h-px w-12 bg-gold" />
           </motion.div>
           <h1 className="font-display text-[16vw] font-extrabold leading-[0.86] tracking-[-0.08em] text-primary-text sm:text-[12vw] lg:text-[9vw]">
-            <motion.span initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease }} className="block">
+            <motion.span initial={prefersReduced ? false : { opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease }} className="block">
               Berkarya
             </motion.span>
-            <motion.span initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.15, ease }} className="block w-full max-w-[min(100%,1120px)] pb-3">
+            <motion.span initial={prefersReduced ? false : { opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.15, ease }} className="block w-full max-w-[min(100%,1120px)] pb-3">
               <svg ref={svgRef} width="100%" viewBox="0 0 1200 160" preserveAspectRatio="xMinYMid meet" className="h-auto overflow-visible" aria-label="Untuk Indonesia" role="img">
                 <text
                   x="0"
@@ -68,15 +81,15 @@ export function HeroSection() {
               </svg>
             </motion.span>
           </h1>
-          <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3, ease }}>
+          <motion.div initial={prefersReduced ? false : { opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3, ease }}>
             <p className="mt-6 max-w-xl text-lg leading-8 text-muted sm:text-xl">
               Ruang karya muda untuk merancang solusi digital yang berpihak pada masyarakat.
             </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-              <a href="#cta" className="inline-flex min-h-12 items-center justify-center rounded-lg bg-gold px-6 py-3 font-semibold text-primary transition hover:-translate-y-1 hover:bg-[#d8ba82] focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 focus:ring-offset-primary">
+              <a href="#cta" className="button-shimmer inline-flex min-h-12 items-center justify-center rounded-lg bg-gold px-6 py-3 font-semibold text-primary transition hover:-translate-y-1 hover:bg-[#d8ba82] focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 focus:ring-offset-primary">
                 Mulai Berkarya <ArrowUpRight className="ml-2 h-5 w-5" />
               </a>
-              <a href="#about" className="inline-flex min-h-12 items-center justify-center rounded-lg border border-subtle px-6 py-3 font-semibold text-primary-text transition hover:-translate-y-1 hover:border-gold/40 hover:text-gold focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 focus:ring-offset-primary">
+              <a href="#about" className="button-shimmer inline-flex min-h-12 items-center justify-center rounded-lg border border-subtle px-6 py-3 font-semibold text-primary-text transition hover:-translate-y-1 hover:border-gold/40 hover:text-gold focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 focus:ring-offset-primary">
                 Pelajari Lebih Lanjut
               </a>
             </div>

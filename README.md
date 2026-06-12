@@ -11,6 +11,7 @@ app/
   page.tsx
 components/
   AboutSection.tsx
+  ContributionSection.tsx
   CTASection.tsx
   CustomCursor.tsx
   Footer.tsx
@@ -19,6 +20,7 @@ components/
   Navbar.tsx
   PageTransition.tsx
   Reveal.tsx
+  ScrollProgress.tsx
 public/
   favicon.svg
 ```
@@ -52,7 +54,8 @@ npm run start
 - Hero typography besar dengan outline gold text
 - Atmospheric background text dan subtle parallax layer
 - Editorial layout untuk Tentang Program, bukan card template
+- Section Kontribusi Saya untuk menjawab nilai kontribusi secara eksplisit
 - Journey marquee yang pause saat hover
 - CTA split layout dengan word stagger animation
-- Navbar blur setelah scroll, custom cursor, page curtain transition
+- Navbar blur setelah scroll, custom cursor, scroll progress, page curtain transition
 - SEO metadata, Open Graph, dan favicon SVG

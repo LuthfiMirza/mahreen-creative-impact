@@ -1,6 +1,6 @@
 import { AboutSection } from "@/components/AboutSection";
 import { CTASection } from "@/components/CTASection";
-import { CustomCursor } from "@/components/CustomCursor";
+import { ContributionSection } from "@/components/ContributionSection";
 import { Footer } from "@/components/Footer";
 import { HeroSection } from "@/components/HeroSection";
 import { JourneySection } from "@/components/JourneySection";
@@ -12,11 +12,11 @@ export default function Home() {
   return (
     <main className="noise overflow-hidden bg-primary">
       <PageTransition />
-      <CustomCursor />
       <ScrollProgress />
       <Navbar />
       <HeroSection />
       <AboutSection />
+      <ContributionSection />
       <JourneySection />
       <CTASection />
       <Footer />

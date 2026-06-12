@@ -24,7 +24,7 @@ export function Navbar() {
         <a href="#home" className="font-mono text-xs uppercase tracking-[0.28em] text-gold">Mahreen</a>
         <div className="hidden items-center gap-8 sm:flex">
           {links.map((link) => (
-            <a key={link.href} href={link.href} className="text-sm text-muted transition hover:text-primary-text">{link.label}</a>
+            <a key={link.href} href={link.href} className="nav-link text-sm text-muted transition hover:text-primary-text">{link.label}</a>
           ))}
         </div>
       </nav>
